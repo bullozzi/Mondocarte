@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mondocarte | Gestionale carte Pokémon</title>
+<style>
+:root{--bg:#0b1020;--panel:#151d32;--panel2:#1b2540;--line:#303c58;--text:#f5f7ff;--muted:#a4b0cb;--brand:#ffcb4b;--brand2:#f5a623;--green:#5fdda7;--red:#ff8192;--shadow:0 18px 50px #0004}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#1d3153 0,#0b1020 38%);color:var(--text);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:14px}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--brand);outline-offset:2px}.shell{max-width:1500px;padding:26px 32px;margin:auto}.topbar{display:flex;gap:18px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:28px}.logo{display:flex;align-items:center;gap:14px;cursor:pointer}.emblem{width:47px;height:47px;background:linear-gradient(140deg,#ffd86e,#f49827);border-radius:15px;display:grid;place-items:center;font-size:27px;box-shadow:0 6px 20px #ffc14b33}.logo strong{font-size:23px;letter-spacing:-.7px}.logo small{display:block;color:var(--muted);font-size:11px;letter-spacing:1.7px;text-transform:uppercase;margin-top:1px}.tag{border:1px solid #475675;background:#202b44;color:#bccae3;border-radius:99px;padding:7px 11px;font-size:12px}.btn{border:1px solid var(--line);border-radius:11px;padding:11px 15px;color:var(--text);background:#202b44;transition:.16s;font-weight:650}.btn:hover{background:#2b3855}.btn.primary{background:var(--brand);border-color:var(--brand);color:#251c09}.btn.primary:hover{background:#ffe098}.btn.danger{color:#ffd0d6;border-color:#74414b;background:#4a2530}.btn.icon{padding:9px 12px}.topactions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.hero{padding:29px 0 22px}.hero h1{font-size:clamp(29px,4vw,46px);letter-spacing:-1.9px;margin:4px 0 10px}.hero p{color:var(--muted);font-size:15px;max-width:670px;line-height:1.65}.eyebrow{color:var(--brand);text-transform:uppercase;font-size:11px;font-weight:800;letter-spacing:2.1px}.branches{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:22px}.branch{position:relative;overflow:hidden;text-align:left;min-height:245px;border-radius:20px;padding:28px;border:1px solid #485575;background:linear-gradient(140deg,#243a5a,#18233d 75%);color:var(--text);box-shadow:var(--shadow)}.branch::after{content:'◈';position:absolute;right:-8px;bottom:-95px;font-size:330px;color:#ffffff07;pointer-events:none}.branch:nth-child(2){background:linear-gradient(140deg,#3f2f56,#1c243c 75%)}.branch:hover{transform:translateY(-2px);border-color:var(--brand)}.branch .symbol{font-size:38px;display:block;margin-bottom:25px}.branch h2{font-size:26px;letter-spacing:-1px;margin:0 0 8px}.branch p{color:#c0cbe0;margin:0 0 17px}.branch .link{font-weight:800;color:var(--brand)}.numbers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:16px 0 23px}.metric{background:var(--panel);padding:19px;border-radius:15px;border:1px solid var(--line)}.metric label{display:block;color:var(--muted);font-size:12px}.metric strong{display:block;font-size:27px;margin-top:9px;letter-spacing:-.6px}.metric small{font-size:11px;color:var(--muted)}.toolbar{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin:18px 0}.search{display:flex;gap:9px;align-items:center;border:1px solid var(--line);background:var(--panel);padding:0 15px;border-radius:12px;min-width:min(100%,310px);flex:1}.search input{border:0;outline:0;color:var(--text);background:transparent;height:47px;min-width:0;width:100%}.search input::placeholder{color:#8795b4}.toolbar select{border:1px solid var(--line);background:var(--panel);color:var(--text);padding:12px;border-radius:11px;max-width:190px}.sectionheading{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:25px}.sectionheading h2{font-size:19px;letter-spacing:-.4px;margin:0}.muted{color:var(--muted)}.catalog{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:16px;margin:18px 0 32px}.item{background:var(--panel);border:1px solid var(--line);border-radius:16px;overflow:hidden;transition:.16s}.item:hover{border-color:#6a7794;transform:translateY(-2px)}.picture{height:218px;background:linear-gradient(135deg,#283650,#151e35);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}.picture img{height:100%;width:100%;object-fit:contain;padding:12px}.nopicture{font-size:56px;opacity:.4}.quantity{position:absolute;top:10px;right:10px;background:#0a1129da;border:1px solid #50617d;border-radius:8px;padding:5px 8px;font-weight:750;font-size:12px}.details{padding:15px}.details h3{font-size:15px;margin:0 0 5px;overflow-wrap:anywhere}.details .subtitle{font-size:12px;color:var(--muted);height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.price-row{display:flex;justify-content:space-between;align-items:center;margin-top:13px}.price{font-size:21px;font-weight:800}.change{font-size:12px;font-weight:750}.up{color:var(--green)}.down{color:var(--red)}.neutral{color:var(--muted)}.card-actions{display:flex;gap:7px;margin-top:13px}.card-actions button{flex:1;font-size:12px;padding:8px}.empty{background:#161f36;border:1px dashed #4c5c79;border-radius:16px;text-align:center;padding:55px 20px;color:var(--muted);margin-top:18px}.empty .big{font-size:43px;display:block;margin-bottom:10px}.empty strong{display:block;color:var(--text);font-size:17px;margin-bottom:7px}.notice{border:1px solid #5b533b;background:#292739;border-radius:13px;color:#eadbb1;padding:13px 17px;margin:12px 0;line-height:1.55}.notice a{color:#ffe29b}.homefoot{color:var(--muted);margin-top:29px;padding:24px 0;border-top:1px solid var(--line);font-size:12px}.modal-wrap{position:fixed;inset:0;background:#000b;z-index:8;display:none;justify-content:center;align-items:center;padding:20px;overflow:auto}.modal-wrap.open{display:flex}.modal{width:min(100%,650px);max-height:92vh;overflow:auto;background:#1a243b;border-radius:19px;border:1px solid #4a5975;box-shadow:0 25px 80px #0009;padding:25px}.modal h2{margin:0;font-size:24px;letter-spacing:-.6px}.modalhead{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:19px}.fieldgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:7px;min-width:0}.field.wide{grid-column:1/-1}.field label{font-size:12px;color:#bdc9dd;font-weight:650}.field input,.field select,.field textarea{width:100%;background:#101a2d;border:1px solid #41516d;border-radius:10px;padding:12px;color:var(--text)}.field textarea{resize:vertical;min-height:65px}.field small{font-size:11px;color:var(--muted);line-height:1.5}.modalfooter{display:flex;justify-content:flex-end;gap:9px;margin-top:22px;flex-wrap:wrap}.mini{color:var(--muted);font-size:12px}.history{display:flex;align-items:end;gap:7px;height:124px;border-bottom:1px solid #53617b;padding:5px 0 0;margin-top:10px}.history .bar{min-width:10px;flex:1;border-radius:5px 5px 0 0;background:#e9b64e;position:relative}.history .bar:hover{background:#ffe08a}.history .bar span{display:none;position:absolute;bottom:100%;left:0;background:#10192e;padding:6px;font-size:11px;border-radius:5px;white-space:nowrap;z-index:2}.history .bar:hover span{display:block}.tabs{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.loading{opacity:.55;pointer-events:none}.settingsbox{background:#121c31;border:1px solid var(--line);padding:13px;border-radius:12px;margin-top:14px}a{color:#ffd66b}@media(max-width:750px){.shell{padding:16px}.branches{grid-template-columns:1fr}.numbers{grid-template-columns:repeat(2,1fr)}.metric strong{font-size:22px}.toolbar select{flex:1;max-width:unset}.catalog{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.picture{height:185px}.fieldgrid{grid-template-columns:1fr}.field.wide{grid-column:1}.branch{min-height:210px;padding:23px}.topbar{margin-bottom:10px}.details{padding:12px}.price{font-size:18px}}
+
+/* Mondocarte visual refinement — v1.1, layout only. */
+:root{--bg:#090e1b;--panel:#141d2f;--panel2:#1d2940;--line:#2a3952;--text:#f5f7fc;--muted:#9baec9;--brand:#ffcc65;--brand2:#e9aa4b;--green:#65ddae;--red:#ff8499;--shadow:0 18px 45px #02071370}
+body{background:radial-gradient(ellipse 55% 30% at 100% 0%,#20304b77,transparent 75%),radial-gradient(ellipse 50% 28% at 0% 15%,#17284777,transparent 76%),#090e1b;line-height:1.5;min-height:100vh}
+.shell{max-width:1440px;padding:30px 42px 10px}.topbar{min-height:72px;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid #28334a;gap:15px}.logo{gap:12px}.logo strong{font-weight:850;letter-spacing:-1px;font-size:25px}.logo small{font-size:10px;letter-spacing:1.35px}.emblem{background:linear-gradient(140deg,#ffe098,#f5b644);color:#4c3213;border-radius:15px;box-shadow:0 7px 25px #edab3f28;width:48px;height:48px;font-weight:900}.tag{background:#18243a;border:1px solid #35435c;color:#bdcae0}.topactions .tag{font-size:11px}.btn{background:#1b2940;border-color:#354560;border-radius:12px;padding:10px 15px;font-weight:700;transition:background .18s,border-color .18s,transform .18s,box-shadow .18s}.btn:hover{background:#263853;border-color:#5f7698;transform:translateY(-1px)}.btn.primary{background:linear-gradient(135deg,#ffe093,#ffc257);border-color:#ffd475;color:#302008;box-shadow:0 5px 22px #f8bd4d1c}.btn.primary:hover{background:linear-gradient(135deg,#ffe9a8,#ffce74);box-shadow:0 7px 25px #f8bd4d40}.btn.danger{background:#4c2837;border-color:#724354}.hero{padding:33px 0 17px}.hero h1{font-size:clamp(34px,4.5vw,56px);line-height:1.12;letter-spacing:-2.7px;margin:12px 0 16px;font-weight:850}.hero p{max-width:730px;line-height:1.7;font-size:15px;color:#a9b9d0}.eyebrow{letter-spacing:2.3px;font-size:10px;color:#f6c96a}.branches{gap:22px;margin-top:30px}.branch{min-height:280px;border-radius:23px;padding:31px;isolation:isolate;box-shadow:0 22px 55px #0003;transition:transform .22s,border-color .22s,box-shadow .22s;background:radial-gradient(circle at 90% 10%,#4b67964a,transparent 55%),linear-gradient(145deg,#223b5d,#15253e 85%)}.branch:nth-child(2){background:radial-gradient(circle at 90% 10%,#89649b44,transparent 58%),linear-gradient(145deg,#3d2c50,#20283f 85%)}.branch::after{content:'✧';right:20px;bottom:-125px;font-size:320px;color:#ffffff0b;line-height:1}.branch:hover{transform:translateY(-5px);border-color:#dfb970;box-shadow:0 25px 65px #0006}.branch .symbol{width:61px;height:61px;display:grid;place-items:center;background:#ffffff10;border:1px solid #ffffff22;border-radius:18px;margin-bottom:35px;font-size:31px;color:#ffdc90}.branch h2{font-size:29px;letter-spacing:-1.1px;margin-bottom:9px}.branch p{font-size:13px;line-height:1.7;color:#c0cde2}.branch .link{font-size:13px;display:inline-block;margin-top:4px;color:#ffdb85}.numbers{gap:15px;margin-top:20px;margin-bottom:27px}.metric{background:linear-gradient(145deg,#19253a,#121c2f);padding:21px;border-radius:17px;min-height:122px;border-color:#2c3b54}.metric label{font-size:12px;letter-spacing:.1px}.metric strong{font-size:clamp(21px,2.5vw,30px);font-weight:800;line-height:1.2;letter-spacing:-.75px;margin-top:14px;overflow-wrap:anywhere}.metric small{display:block;margin-top:7px;line-height:1.4}.tabs{gap:11px;margin-top:9px}.toolbar{padding:17px;background:#121c2e;border:1px solid #2b3952;border-radius:18px;gap:10px;margin:21px 0}.search{background:#0d1728;border-color:#354560;border-radius:11px;min-width:260px}.search:focus-within{border-color:#e4b65d;box-shadow:0 0 0 3px #ffc96414}.toolbar select{background:#1c2940;border-color:#354560;max-width:210px}.sectionheading{margin-top:30px}.sectionheading h2{font-size:22px;font-weight:800;letter-spacing:-.65px}.catalog{grid-template-columns:repeat(auto-fill,minmax(208px,1fr));gap:18px;margin-top:20px}.item{border-radius:18px;border-color:#2b3a52;background:#141e30;box-shadow:0 10px 22px #01061224;transition:transform .2s,border-color .2s,box-shadow .2s}.item:hover{border-color:#cfa961;transform:translateY(-4px);box-shadow:0 16px 30px #01061280}.picture{height:253px;background:radial-gradient(circle at 50% 48%,#334561,#182338 77%);border-bottom:1px solid #2b3951}.picture img{padding:16px 19px;filter:drop-shadow(0 11px 12px #0007);transition:transform .2s}.item:hover .picture img{transform:scale(1.035)}.quantity{right:12px;top:12px;border-radius:9px;background:#0b1528ed;padding:6px 10px;font-size:11px}.details{padding:16px}.details h3{font-size:15px;font-weight:750;line-height:1.4;min-height:21px}.details .subtitle{color:#9facc2;font-size:11px;margin-top:3px}.price-row{margin-top:16px}.price{font-size:22px;font-weight:850;letter-spacing:-.65px;color:#ffe09d}.change{font-size:11px;background:#ffffff08;padding:5px 7px;border-radius:7px}.card-actions{margin-top:16px}.card-actions .btn{padding:9px}.notice{background:#282635;border-color:#494150;color:#dfd5c4;border-radius:13px;font-size:12px;line-height:1.65}.empty{border-radius:19px;padding:68px 20px;background:#141e30}.homefoot{padding-top:28px;padding-bottom:16px;font-size:11px}.modal-wrap{backdrop-filter:blur(9px);background:#02050cbf}.modal{border-color:#465774;background:#182338;border-radius:22px;padding:29px;box-shadow:0 30px 90px #000b}.modal h2{font-size:25px}.field input,.field textarea,.field select{background:#0e192b;border-color:#394c68;border-radius:11px}.field input:focus,.field textarea:focus,.field select:focus{border-color:#efbf69}.field label{color:#c8d3e3}.settingsbox{background:#101b2c}
+@media(max-width:980px){.shell{padding:22px 24px}.numbers{grid-template-columns:repeat(2,minmax(0,1fr))}.toolbar .search{flex-basis:100%}.toolbar select{flex:1;max-width:none}.catalog{grid-template-columns:repeat(auto-fill,minmax(185px,1fr))}}
+@media(max-width:650px){.shell{padding:15px 15px 8px}.topbar{align-items:flex-start;gap:15px}.topactions{width:100%;gap:7px}.topactions .tag{margin-right:auto}.topactions .btn{padding:9px 11px;font-size:12px}.hero{padding-top:23px}.hero h1{font-size:37px;letter-spacing:-1.7px}.hero p{font-size:13px}.branches{grid-template-columns:1fr;gap:14px;margin-top:22px}.branch{min-height:215px;padding:23px}.branch .symbol{margin-bottom:21px;width:50px;height:50px}.branch h2{font-size:25px}.numbers{gap:9px}.metric{padding:15px;min-height:108px}.metric strong{font-size:21px;margin-top:10px}.toolbar{padding:12px;gap:8px}.toolbar .search{min-width:100%}.toolbar select{min-width:0;font-size:11px;padding:10px}.toolbar>.btn{flex:1}.catalog{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.picture{height:194px}.picture img{padding:9px}.details{padding:11px}.details h3{font-size:13px}.price{font-size:18px}.change{font-size:10px}.card-actions{gap:6px}.card-actions .btn{font-size:11px;padding:8px 4px}.modal{padding:18px}.sectionheading h2{font-size:19px}}
+@media(max-width:390px){.catalog{grid-template-columns:repeat(2,minmax(0,1fr))}.picture{height:159px}.price-row{flex-wrap:wrap;gap:5px}.topactions .tag{display:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;scroll-behavior:auto!important}}
+
+/* Sales accordion: visually integrated with existing card style. */
+.sale-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;background:#202e46;border:1px solid #3b4e68;color:#ffda8b;border-radius:9px;padding:9px 10px;font-size:12px;font-weight:750;cursor:pointer;margin-top:11px}
+.sale-toggle:hover{background:#293951;border-color:#b28b53}.sale-toggle .chevron{transition:transform .18s}.sale-panel[open] .chevron{transform:rotate(180deg)}.sale-panel{margin-top:10px}.sale-panel summary{list-style:none}.sale-panel summary::-webkit-details-marker{display:none}.sale-panel[open] .sale-toggle{border-radius:9px 9px 0 0;margin-bottom:0}.sale-form{padding:12px 10px;border:1px solid #3b4e68;border-top:0;border-radius:0 0 9px 9px;background:#101a2b}.sale-form label{display:block;color:#bdc9dd;font-size:11px;font-weight:700;margin-bottom:5px}.sale-form input{pointer-events:auto;user-select:text;touch-action:manipulation;width:100%;min-width:0;background:#18263b;border:1px solid #42536c;color:var(--text);border-radius:7px;padding:8px 9px}.sale-fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}.sale-form .sale-total{color:#b8c9dd;font-size:11px;margin:9px 0}.sale-form .sale-submit{display:block;width:100%;padding:9px;margin-top:9px}.sale-soldout{font-size:11px;color:var(--muted);margin:8px 0 0}.sale-list{display:grid;gap:8px;margin:12px 0}.sale-entry{background:#111c30;border:1px solid #33425e;border-radius:10px;padding:12px;display:flex;justify-content:space-between;gap:12px;align-items:center}.sale-entry small{display:block;color:var(--muted);margin-top:3px}.sale-entry strong{white-space:nowrap}.sales-summary{display:flex;gap:9px;flex-wrap:wrap;margin:10px 0}.sales-summary .tag{border-radius:10px}
+
+/* Bilancio: coerente con il tema Mondocarte */
+.balance-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin:20px 0 23px}.balance-kpi{border-left:3px solid #6e7f9b}.balance-kpi.cost{border-left-color:var(--red)}.balance-kpi.gain{border-left-color:var(--green)}.balance-kpi.positive{border-left-color:var(--green)}.balance-kpi.negative{border-left-color:var(--red)}.balance-kpi.cost strong,.cost-text,.balance-kpi.negative strong{color:var(--red)}.balance-kpi.gain strong,.gain-text,.balance-kpi.positive strong{color:var(--green)}
+.balance-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:16px;margin-bottom:17px}.balance-panel{border:1px solid var(--line);background:linear-gradient(145deg,#19253a,#121c2f);border-radius:18px;padding:22px;margin-bottom:17px;min-width:0}.balance-panel h2{font-size:20px;letter-spacing:-.5px;margin:5px 0 0}.balance-panel-header{display:flex;gap:13px;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-bottom:20px}.expense-form{display:grid;grid-template-columns:1fr 1fr;gap:13px}.expense-form .field:first-child{grid-column:1/-1}.expense-date-qty{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:13px}.expense-date-qty .field{min-width:0}.expense-total-preview{grid-column:1/-1;font-size:13px;color:var(--muted)}.expense-form .field label{display:block;margin-bottom:7px}.expense-form input,.expense-form select{width:100%;border:1px solid #394c68;border-radius:11px;background:#0e192b;color:var(--text);padding:12px}.expense-add{justify-self:start}.expense-status{align-self:center;color:#ff9fae;font-size:12px}.balance-summary-row{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #304056;gap:15px;padding:13px 0}.balance-summary-row span{color:var(--muted)}.balance-summary-row strong{white-space:nowrap}.chart-panel{padding-bottom:16px}.chart-legend{display:flex;gap:16px;flex-wrap:wrap;color:var(--muted);font-size:12px}.chart-legend span{display:flex;align-items:center;gap:7px}.dot-red,.dot-green{width:9px;height:9px;border-radius:50%;display:inline-block;background:var(--red)}.dot-green{background:var(--green)}.chart-scroll{overflow-x:auto;max-width:100%}.balance-svg{width:100%;height:auto;display:block;min-width:500px}.balance-chart-empty{text-align:center;color:var(--muted);padding:65px 12px}.balance-history{max-height:440px;overflow-y:auto}.balance-entry{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:13px 0;border-top:1px solid #304056}.balance-entry:first-child{border-top:0}.balance-entry small{display:block;color:var(--muted);margin-top:4px}.balance-entry-right{display:flex;align-items:center;gap:10px}.mini-delete{padding:4px 8px;font-size:11px}
+@media(max-width:1050px){.balance-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.balance-layout{grid-template-columns:1fr}}@media(max-width:650px){.balance-metrics{gap:9px}.balance-panel{padding:15px}.expense-form{grid-template-columns:1fr}.expense-form .field:first-child{grid-column:auto}.expense-date-qty{grid-template-columns:1fr 1fr}.balance-entry{align-items:flex-start}.balance-entry-right{flex-shrink:0}}
+
+.pdf-export-panel{margin:22px 0 12px;padding:19px 22px;border:1px solid #3c4e65;border-radius:14px;background:linear-gradient(120deg,#1c293e,#19263a);display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}.pdf-export-panel strong{display:block;color:#f3e3c3;font-size:15px}.pdf-export-panel small{display:block;color:#aab9ce;font-size:12px;margin-top:5px;max-width:580px;line-height:1.5}.sale-channel{margin:10px 0}.sale-channel label{display:block;margin-bottom:5px;font-size:12px;color:#bbc8de}.sale-channel select{display:block;width:100%;min-width:0;padding:10px;background:#152238;border:1px solid #3c4e65;border-radius:8px;color:#f0f3fa;font-size:13px}
+</style></head><body><main id="root" class="shell"></main>
+<div class="modal-wrap" id="overlay" role="dialog" aria-modal="true"><div class="modal" id="modal"></div></div>
+<script>
+'use strict';
+const KEY='mondocarte_inventory_v1';const CONFIG='mondocarte_config_v1';const SALES_KEY='mondocarte_sales_v1';const EXPENSES_KEY='mondocarte_expenses_v1';const BRANCHES={tomstaff:'Carte TomStaff',comuni:'Carte Comuni'};
+const euro=n=>new Intl.NumberFormat('it-IT',{style:'currency',currency:'EUR'}).format(Number(n)||0);
+const escapeHtml=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const load=(key,fallback)=>{try{const a=JSON.parse(localStorage.getItem(key));return a??fallback}catch{return fallback}};
+let inventory=load(KEY,[]),config=load(CONFIG,{endpoint:'',lastCheck:null}),branch=null,search='',sort='price',conditionFilter='all';
+if(!Array.isArray(inventory))inventory=[];
+let sales=load(SALES_KEY,[]);if(!Array.isArray(sales))sales=[];let expenses=load(EXPENSES_KEY,[]);if(!Array.isArray(expenses))expenses=[];let page='catalog';
+// Persistenza a due livelli: archivio principale locale e recupero IndexedDB.
+// La data di modifica viene confrontata all'avvio: non ripristinare mai una copia piu' vecchia.
+const SAVE_META='mondocarte_saved_at_v1';
+let mirrorDb=null,storageFailure='',startupReady=false;
+function storageSnapshot(){return {inventory,sales,expenses,config,savedAt:new Date().toISOString()}}
+function statusSaved(ok,message){
+ storageFailure=ok?'':String(message||'Memoria del browser non disponibile');
+ const tag=document.getElementById('autoSaveStatus');
+ if(tag){tag.textContent=ok?'✓ Salvato automaticamente':'⚠ Salvataggio non riuscito';tag.title=ok?'I dati sono salvati su questo browser':storageFailure;tag.style.color=ok?'#65ddae':'#ff8499'}
+}
+function openMirror(){return new Promise((resolve,reject)=>{
+ if(!('indexedDB' in window)){reject(new Error('IndexedDB non disponibile'));return}
+ const req=indexedDB.open('MondocarteBackup',1);
+ req.onupgradeneeded=()=>{if(!req.result.objectStoreNames.contains('snapshots'))req.result.createObjectStore('snapshots')};
+ req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);
+})}
+function readMirror(){return new Promise((resolve,reject)=>{
+ const tx=mirrorDb.transaction('snapshots','readonly');const req=tx.objectStore('snapshots').get('latest');
+ req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error);
+})}
+function writeMirror(data){return new Promise((resolve,reject)=>{
+ if(!mirrorDb){reject(new Error('IndexedDB non disponibile'));return}
+ const tx=mirrorDb.transaction('snapshots','readwrite');
+ tx.objectStore('snapshots').put(data,'latest');
+ tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error||new Error('Scrittura IndexedDB fallita'));tx.onabort=()=>reject(tx.error||new Error('Scrittura IndexedDB annullata'));
+})}
+// La versione primaria utilizza ancora le chiavi esistenti: compatibile con vecchi inventari.
+function writePrimary(data){
+ const entries=[[KEY,data.inventory],[SALES_KEY,data.sales],[EXPENSES_KEY,data.expenses],[CONFIG,data.config],[SAVE_META,data.savedAt]];
+ const backup=entries.map(([k])=>[k,localStorage.getItem(k)]);
+ try{
+  for(const [k,v] of entries)localStorage.setItem(k,typeof v==='string'?v:JSON.stringify(v));
+  if(localStorage.getItem(SAVE_META)!==data.savedAt)throw Error('Verifica di scrittura fallita');
+ }catch(e){
+  try{for(const [k,v] of backup)v===null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(_){}
+  throw e;
+ }
+}
+let mirrorWriteQueue=Promise.resolve();
+let serverMode=false, serverSaveQueue=Promise.resolve(), pendingSaves=0;
+// Ogni operazione e' confermata solo dopo che almeno un archivio l'ha accettata.
+// IndexedDB ha una capienza maggiore, utile soprattutto per le fotografie delle carte.
+async function markSaved(){
+ const data=storageSnapshot();
+ const tag=document.getElementById('autoSaveStatus');
+ if(tag){tag.textContent='◌ Salvataggio in corso';tag.style.color='#ffcc65'}
+ let primaryOK=false,mirrorOK=false;const errors=[];
+ try{writePrimary(data);primaryOK=true}catch(e){errors.push('memoria locale: '+e.message)}
+ // Esegui le scritture IndexedDB in ordine, senza far sovrascrivere una modifica recente.
+ mirrorWriteQueue=mirrorWriteQueue.catch(()=>{}).then(async()=>{
+  if(!mirrorDb)mirrorDb=await openMirror();
+  await writeMirror(data);
+ });
+ if(primaryOK){
+  // La copia principale e' gia stata scritta e riletta: non bloccare l'utente per il backup secondario.
+  mirrorWriteQueue.catch(e=>console.warn('Backup IndexedDB non disponibile:',e));
+  statusSaved(true);return true;
+ }
+ try{await mirrorWriteQueue;mirrorOK=true}catch(e){errors.push('archivio IndexedDB: '+e.message)}
+ if(!mirrorOK){statusSaved(false,errors.join(' — '));throw Error('Salvataggio bloccato: '+errors.join(' — '))}
+ statusSaved(true);
+ return true;
+}
+const save=()=>markSaved();const saveSales=()=>markSaved();const saveConfig=()=>markSaved();
+function restoreSnapshot(data){
+ inventory=data.inventory;sales=Array.isArray(data.sales)?data.sales:[];
+ expenses=Array.isArray(data.expenses)?data.expenses:[];
+ config=data.config||{endpoint:'',lastCheck:null};
+}
+async function initMirror(){
+ try{
+  mirrorDb=await openMirror();const recovered=await readMirror();
+  const primaryDate=localStorage.getItem(SAVE_META)||'';
+  const primaryMissing=[KEY,SALES_KEY,EXPENSES_KEY,CONFIG].every(k=>localStorage.getItem(k)===null);
+  if(recovered&&Array.isArray(recovered.inventory)&&(primaryMissing||String(recovered.savedAt||'')>primaryDate)){
+   restoreSnapshot(recovered);
+   try{writePrimary(recovered);statusSaved(true)}catch(e){statusSaved(false,e.message)}
+   render();showSaveToast('Dati piu recenti recuperati dall’archivio di sicurezza');
+  }else if(!recovered){await writeMirror(storageSnapshot())}
+ }catch(e){console.warn('Mondocarte: archivio secondario non disponibile',e)}
+ startupReady=true;
+}
+// Su file HTML aperti direttamente, alcuni browser isolano i dati per percorso file.
+// Non e' possibile garantire persistenza tra browser/dispositivi o dopo cancellazione dati.
+let persistRequested=false;
+function requestDurableStorage(){if(persistRequested)return;persistRequested=true;
+ if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{});
+}
+document.addEventListener('click',requestDurableStorage,{once:true});
+const uid=()=>{try{if(typeof crypto!=='undefined'&&typeof crypto.randomUUID==='function')return crypto.randomUUID()}catch(e){}return 'mc_'+Date.now().toString(36)+'_'+Math.random().toString(36).slice(2,12)};
+function changeOf(c){let h=Array.isArray(c.history)?c.history:[];if(h.length<2)return null;let prev=Number(h[h.length-2].price),now=Number(h[h.length-1].price);return prev>0?(now-prev)/prev*100:null}
+function deltaLabel(c){let n=changeOf(c);return n===null?'<span class="change neutral">—</span>':`<span class="change ${n>0?'up':n<0?'down':'neutral'}">${n>0?'+':''}${n.toFixed(1).replace('.',',')}%</span>`}
+function totals(b){let a=inventory.filter(x=>x.branch===b);return {refs:a.length,qty:a.reduce((s,x)=>s+Number(x.qty||0),0),value:a.reduce((s,x)=>s+Number(x.qty||0)*Number(x.price||0),0)}}
+function header(){return `<header class="topbar"><div class="logo" onclick="goHome()"><span class="emblem">✦</span><span><strong>Mondocarte</strong><small>Pokémon • Inventory Studio</small></span></div><div class="topactions"><span class="tag" id="autoSaveStatus">◌ Connessione archivio</span><button class="btn icon" onclick="exportJSON()" title="Salva una copia di sicurezza">↓ Backup</button><button class="btn icon" onclick="document.getElementById('importFile').click()">↑ Importa</button><input type="file" id="importFile" hidden accept=".json,application/json" onchange="importJSON(event)"><button class="btn icon" onclick="openSettings()" title="Impostazioni">⚙</button></div></header>`}
+function home(){let t=totals('tomstaff'),c=totals('comuni');return `${header()}<section class="hero"><span class="eyebrow">Gestionale del tuo inventario</span><h1>Ogni carta, sotto controllo.</h1><p>Gestisci le tue carte Pokémon in due magazzini separati. Carte, vendite, prezzi, bilancio e cataloghi PDF in un unico gestionale.</p></section><div class="branches"><button class="branch" onclick="enter('tomstaff')"><span class="symbol">♠</span><h2>Carte TomStaff</h2><p>${t.refs} referenze · ${t.qty} carte · ${euro(t.value)}</p><span class="link">Entra nel magazzino →</span></button><button class="branch" onclick="enter('comuni')"><span class="symbol">◇</span><h2>Carte Comuni</h2><p>${c.refs} referenze · ${c.qty} carte · ${euro(c.value)}</p><span class="link">Entra nel magazzino →</span></button></div>${foot()}`}
+function foot(){return `<footer class="homefoot">Mondocarte • Versione HTML unica • Salvataggio nel browser di questo dispositivo. Il backup JSON resta indispensabile: GitHub Pages non sincronizza gli archivi tra persone o dispositivi.</footer>`}
+function enter(b){branch=b;page='catalog';search='';sort='price';conditionFilter='all';render()};function goHome(){branch=null;page='catalog';search='';render()};function goBalance(){page='balance';render()};function goCatalog(){page='catalog';render()}
+function render(){document.getElementById('root').innerHTML=branch?(page==='balance'?balancePage():dashboard()):home();if(serverMode&&pendingSaves){const tag=document.getElementById('autoSaveStatus');if(tag){tag.textContent='◌ Salvataggio in corso';tag.style.color='#ffcc65'}}else statusSaved(!storageFailure,storageFailure);if(branch&&page==='catalog'){const inp=document.getElementById('search');inp.value=search;updateCatalog()}}
+function dashboard(){const v=totals(branch),all=inventory.filter(x=>x.branch===branch),cost=all.reduce((s,x)=>s+(Number(x.cost)||0)*Number(x.qty||0),0);return `${header()}<div class="tabs"><button class="btn" onclick="goHome()">← Reparti</button><span class="tag">${BRANCHES[branch]}</span></div><section class="hero" style="padding-bottom:3px"><span class="eyebrow">Inventario / ${BRANCHES[branch]}</span><h1>${BRANCHES[branch]}</h1><p>Gestisci le giacenze e controlla il valore delle carte, ordinate per prezzo unitario decrescente.</p></section><div class="numbers"><div class="metric"><label>Valore di magazzino</label><strong>${euro(v.value)}</strong><small>Prezzo attuale × quantità</small></div><div class="metric"><label>Carte totali</label><strong>${v.qty}</strong><small>Copie fisiche disponibili</small></div><div class="metric"><label>Referenze</label><strong>${v.refs}</strong><small>Carte/varianti distinte</small></div><div class="metric"><label>Costo d'acquisto stimato</label><strong>${euro(cost)}</strong><small>Dati inseriti manualmente</small></div></div><div class="toolbar"><div class="search"><span style="font-size:19px">⌕</span><input id="search" type="search" oninput="search=this.value;updateCatalog()" placeholder="Cerca nome, espansione o numero carta…" aria-label="Cerca carta"></div><select id="sort" onchange="sort=this.value;updateCatalog()"><option value="price">Prezzo: alto → basso</option><option value="low">Prezzo: basso → alto</option><option value="name">Nome: A → Z</option><option value="qty">Quantità: alta → bassa</option></select><select id="condition" onchange="conditionFilter=this.value;updateCatalog()"><option value="all">Tutte le condizioni</option><option>Mint</option><option>Near Mint</option><option>Excellent</option><option>Good</option><option>Light Played</option><option>Played</option><option>Poor</option></select><button class="btn primary" onclick="openEditor()">＋ Aggiungi carta</button><button class="btn" onclick="openSales()">↗ Storico vendite</button><button class="btn" onclick="exportCSV()">Esporta CSV</button><button class="btn" onclick="goBalance()">▤ Bilancio</button></div><div class="notice" id="priceNotice">I prezzi mostrati sono quelli inseriti o aggiornati nel tuo archivio; non sono quotazioni CardTrader in tempo reale. ${config.endpoint?'È configurato un endpoint di aggiornamento: puoi avviare la verifica dal pulsante qui sotto.':'Per controllare i prezzi su richiesta, configura una fonte prezzi nelle impostazioni.'} <button class="btn" style="margin-left:7px;padding:6px 10px" onclick="refreshPrices()">↻ Controlla prezzi</button></div><div class="sectionheading"><h2>Catalogo carte</h2><span class="muted" id="count">0 risultati</span></div><div id="catalog" class="catalog"></div><div class="pdf-export-panel"><div><strong>Catalogo PDF · ${BRANCHES[branch]}</strong><small>Nome carta, quantità disponibile e prezzo attuale. Il PDF viene generato con i valori salvati al momento del download.</small></div><button class="btn primary" type="button" onclick="exportCatalogPDF()">↓ Scarica catalogo PDF</button></div>${foot()}`}
+function updateCatalog(){if(!branch)return;let cards=inventory.filter(c=>c.branch===branch).filter(c=>([c.name,c.set,c.number,c.notes].join(' ').toLocaleLowerCase('it').includes(search.trim().toLocaleLowerCase('it')))&&(conditionFilter==='all'||c.condition===conditionFilter));cards.sort((a,b)=>sort==='price'?Number(b.price)-Number(a.price):sort==='low'?Number(a.price)-Number(b.price):sort==='qty'?Number(b.qty)-Number(a.qty):a.name.localeCompare(b.name,'it'));document.getElementById('sort').value=sort;document.getElementById('condition').value=conditionFilter;document.getElementById('count').textContent=cards.length+' risultat'+(cards.length===1?'o':'i');document.getElementById('catalog').innerHTML=cards.length?cards.map(cardHTML).join(''):`<div class="empty" style="grid-column:1/-1"><span class="big">▤</span><strong>${search?'Nessuna carta trovata':'Il catalogo è vuoto'}</strong><p>${search?'Prova a cambiare la ricerca o i filtri.':'Premi “＋ Aggiungi carta” per inserire la prima carta del reparto.'}</p></div>`}
+function cardHTML(c){const isDirectImage=String(c.image||'').startsWith('data:image/')||/^https?:\/\/.*\.(jpe?g|png|webp|gif|avif)(\?.*)?$/i.test(String(c.image||''));const image=isDirectImage?`<img alt="${escapeHtml(c.name)}" loading="lazy" referrerpolicy="no-referrer" src="${escapeHtml(c.image)}" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'nopicture',textContent:'✦'}))">`:'<span class="nopicture" title="Carica una foto nella modifica della carta">✦</span>';return `<article class="item"><div class="picture">${image}<span class="quantity">× ${Number(c.qty)||0}</span></div><div class="details"><h3>${escapeHtml(c.name)}</h3><div class="subtitle">${escapeHtml([c.set,c.number,c.condition].filter(Boolean).join(' · '))}</div><div class="price-row"><span class="price">${euro(c.price)}</span>${deltaLabel(c)}</div><div class="card-actions"><button class="btn" onclick="showDetails('${c.id}')">Dettagli</button><button class="btn" onclick="openEditor('${c.id}')">Modifica</button></div><details class="sale-panel"><summary class="sale-toggle">↗ Registra vendita <span class="chevron">⌄</span></summary>${Number(c.qty)>0?`<form class="sale-form" data-sale-card="${escapeHtml(c.id)}"><div class="sale-fields"><div><label>Copie vendute</label><input type="number" name="qty" min="1" max="${Number(c.qty)}" step="1" value="1" inputmode="numeric" oninput="updateSaleTotal(this.closest('.sale-form'))" required></div><div><label>Prezzo unitario (€)</label><input type="number" name="unitPrice" min="0" step="0.01" value="${Number(c.price)||0}" inputmode="decimal" oninput="updateSaleTotal(this.closest('.sale-form'))" required></div></div><div class="sale-channel"><label for="saleChannel_${c.id}">Modalità di vendita</label><select id="saleChannel_${c.id}" name="channel" required><option value="Vinted">Vinted</option><option value="Consegna a mano">Consegna a mano</option><option value="Altro">Altro...</option></select></div><div class="sale-total">Totale vendita: <strong>${euro(c.price)}</strong></div><button type="button" class="btn primary sale-submit" onclick="recordSale(this.closest('.sale-form'))">Conferma vendita</button><div class="sale-status" role="status" aria-live="polite" style="font-size:12px;color:#ff9fae;margin-top:7px"></div></form>`:`<p class="sale-soldout">Nessuna copia disponibile: aggiorna prima il magazzino.</p>`}</details></div></article>`}
+function updateSaleTotal(form){
+ const qInput=form.querySelector('input[name="qty"]'),pInput=form.querySelector('input[name="unitPrice"]');
+ const el=form.querySelector('.sale-total strong');
+ if(el&&qInput&&pInput)el.textContent=euro(Number(qInput.value)*Number(pInput.value));
+}
+async function recordSale(form){
+ const status=form.querySelector('.sale-status');
+ const showError=msg=>{if(status)status.textContent=msg;console.error('Mondocarte vendita:',msg)};
+ const btn=form.querySelector('.sale-submit');
+ try{
+  const id=form.getAttribute('data-sale-card');
+  const c=inventory.find(x=>String(x.id)===id);
+  if(!c){showError('Carta non trovata: prova a riaprire il reparto.');return}
+  const qInput=form.querySelector('input[name="qty"]'),pInput=form.querySelector('input[name="unitPrice"]');
+  if(!qInput||!pInput)throw new Error('Campi della vendita non trovati');
+  const channelInput=form.querySelector('select[name="channel"]');const channel=channelInput?.value||'Altro';
+  if(!['Vinted','Consegna a mano','Altro'].includes(channel)){showError('Seleziona una modalità di vendita valida.');return}
+  const qty=Number(qInput.value.replace(',','.')),unitPrice=Number(pInput.value.replace(',','.'));
+  if(!Number.isInteger(qty)||qty<1||qty>Number(c.qty)||!Number.isFinite(unitPrice)||unitPrice<0){showError('Inserisci un numero di copie tra 1 e '+c.qty+' e un prezzo valido.');return}
+  if(btn)btn.disabled=true;
+  const now=new Date().toISOString();
+  const nextSales=sales.concat([{id:uid(),cardId:c.id,branch:c.branch,name:c.name,set:c.set||'',number:c.number||'',qty,unitPrice,channel,total:Math.round(qty*unitPrice*100)/100,at:now}]);
+  const nextInventory=inventory.map(x=>String(x.id)===id?{...x,qty:Number(x.qty)-qty,updatedAt:now}:x);
+  const prevInventory=inventory,prevSales=sales;
+  inventory=nextInventory;sales=nextSales;
+  try{await markSaved()}catch(e){inventory=prevInventory;sales=prevSales;throw e}
+  render();showSaveToast('Vendita registrata: '+qty+' '+(qty===1?'copia':'copie')+' venduta/e');
+ }catch(e){showError('Impossibile registrare la vendita: '+(e.message||String(e)))}
+ finally{if(btn&&btn.isConnected)btn.disabled=false}
+}
+// Ogni scheda vendita gestisce direttamente i propri campi e il proprio pulsante.
+
+// BILANCIO - separato per reparto; i ricavi delle vendite sono incassati per intero.
+function formatDate(iso){const d=new Date(iso);return Number.isNaN(d.getTime())?'—':d.toLocaleDateString('it-IT')}
+function balanceData(){
+ const bSales=sales.filter(x=>x.branch===branch),bExpenses=expenses.filter(x=>x.branch===branch);
+ const revenue=bSales.reduce((a,x)=>a+Number(x.total||0),0);
+ const costs=bExpenses.reduce((a,x)=>a+Number(x.amount||0),0);
+ const net=revenue-costs;
+ return {bSales,bExpenses,revenue,costs,net,percentage:costs>0?net/costs*100:null};
+}
+function balancePage(){
+ const d=balanceData();const inv=inventory.filter(c=>c.branch===branch);const estimated=inv.reduce((a,c)=>a+Number(c.cost||0)*Number(c.qty||0),0);
+ const percent=d.percentage===null?'—':(d.percentage>0?'+':'')+d.percentage.toFixed(1).replace('.',',')+'%';
+ const status=d.net>=0?'positive':'negative';
+ return `${header()}<div class="tabs"><button class="btn" onclick="goCatalog()">← Torna al catalogo</button><span class="tag">${BRANCHES[branch]}</span></div>
+ <section class="hero" style="padding-bottom:4px"><span class="eyebrow">Amministrazione / ${BRANCHES[branch]}</span><h1>Bilancio</h1><p>Le vendite aumentano gli incassi; i costi registrati vengono sottratti per ottenere il risultato netto. Tutti i valori si aggiornano con i movimenti del reparto.</p></section>
+ <div class="balance-metrics">
+  <div class="metric balance-kpi cost"><label>Costi registrati</label><strong>${euro(d.costs)}</strong><small>Acquisti e spese</small></div>
+  <div class="metric balance-kpi gain"><label>Guadagni · incassi vendite</label><strong>${euro(d.revenue)}</strong><small>100% di ogni vendita registrata</small></div>
+  <div class="metric balance-kpi ${status}"><label>Risultato netto</label><strong>${euro(d.net)}</strong><small>Guadagni − costi</small></div>
+  <div class="metric balance-kpi ${status}"><label>${d.net>=0?'Percentuale di guadagno':'Percentuale di perdita'}</label><strong>${percent}</strong><small>${d.percentage===null?'Inserisci un costo per calcolare la percentuale':'Risultato netto / costi × 100'}</small></div>
+ </div>
+ <div class="balance-layout">
+  <section class="balance-panel"><div class="balance-panel-header"><div><span class="eyebrow">Le tue uscite</span><h2>Registra un costo</h2></div></div>
+   <form id="expenseForm" class="expense-form" onsubmit="event.preventDefault();addExpense(document.getElementById('expenseForm').querySelector('.expense-add'))">
+     <div class="field"><label>Descrizione *</label><input name="description" required maxlength="140" placeholder="Es. Charizard, acquisto 30th, lotto carte"></div>
+     <div class="field"><label>Categoria</label><select name="category"><option>Carta Pokémon</option><option>Pacchetto Pokémon</option><option>UPC Giorno</option><option>UPC Notte</option></select></div>
+     <div class="field"><label>Prezzo unitario (€) *</label><input name="amount" inputmode="decimal" type="number" min="0.01" step="0.01" placeholder="0,00" oninput="updateExpenseTotal()" required></div>
+     <div class="expense-date-qty"><div class="field"><label>Data *</label><input name="date" type="date" value="${new Date().toLocaleDateString('en-CA')}" required></div><div class="field"><label>Quantità *</label><input name="quantity" type="number" inputmode="numeric" min="1" max="999999" step="1" value="1" oninput="updateExpenseTotal()" required></div></div>
+     <div class="expense-total-preview" id="expenseTotalPreview">Costo totale: ${euro(0)}</div>
+     <button class="btn primary expense-add" type="button" onclick="addExpense(this)">＋ Aggiungi costo</button>
+     <span id="expenseStatus" class="expense-status" role="status" aria-live="polite"></span>
+   </form>
+  </section>
+  <section class="balance-panel"><div class="balance-panel-header"><div><span class="eyebrow">Riepilogo</span><h2>Movimenti del reparto</h2></div></div>
+    <div class="balance-summary-row"><span>Vendite registrate</span><strong>${d.bSales.length}</strong></div>
+    <div class="balance-summary-row"><span>Copie vendute</span><strong>${d.bSales.reduce((a,x)=>a+Number(x.qty||0),0)}</strong></div>
+    <div class="balance-summary-row"><span>Spese registrate</span><strong>${d.bExpenses.length}</strong></div>
+    <div class="balance-summary-row"><span>Valore di acquisto del magazzino rimasto (stima)</span><strong>${euro(estimated)}</strong></div>
+    <p class="muted" style="font-size:12px;line-height:1.6;margin-top:18px">Quando aggiungi nuove carte indicando un costo unitario, il costo di acquisto viene registrato automaticamente. Le carte caricate nelle versioni precedenti non generano costi retroattivi: puoi registrarli qui. Non reinserire manualmente un costo già contabilizzato in automatico.</p>
+  </section>
+ </div>
+ <section class="balance-panel chart-panel"><div class="balance-panel-header"><div><span class="eyebrow">Andamento nel tempo</span><h2>Costi e guadagni</h2></div><div class="chart-legend"><span><i class="dot-red"></i> Costi</span><span><i class="dot-green"></i> Guadagni</span></div></div>${balanceChart(d)}</section>
+ <section class="balance-panel"><div class="balance-panel-header"><div><span class="eyebrow">Cronologia</span><h2>Ultimi movimenti</h2></div><button class="btn" onclick="exportBalanceCSV()">Esporta bilancio CSV</button></div>${balanceHistory(d)}</section>${foot()}`;
+}
+function updateExpenseTotal(){
+ const form=document.getElementById('expenseForm');if(!form)return;
+ const amount=Number(form.elements.amount.value),qty=Number(form.elements.quantity.value);
+ const total=Number.isFinite(amount)&&amount>0&&Number.isSafeInteger(qty)&&qty>0?Math.round(amount*qty*100)/100:0;
+ const target=document.getElementById('expenseTotalPreview');if(target)target.textContent='Costo totale: '+euro(total);
+}
+async function addExpense(button){
+ const form=document.getElementById('expenseForm');if(!form)return;
+ const err=document.getElementById('expenseStatus');const setError=message=>{if(err)err.textContent=message};
+ setError('');
+ const description=String(form.elements.description.value||'').trim();
+ const unitAmount=Number(String(form.elements.amount.value||'').replace(',','.'));
+ const quantity=Number(form.elements.quantity.value);
+ const date=String(form.elements.date.value||'');
+ const category=String(form.elements.category.value||'Carta Pokémon');
+ if(!description){setError('Inserisci una descrizione.');form.elements.description.focus();return}
+ if(!Number.isFinite(unitAmount)||unitAmount<=0){setError('Inserisci un prezzo unitario valido.');form.elements.amount.focus();return}
+ if(!Number.isSafeInteger(quantity)||quantity<1||quantity>999999){setError('La quantità deve essere un numero intero maggiore di zero.');form.elements.quantity.focus();return}
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(date)||Number.isNaN(new Date(date+'T12:00:00').getTime())){setError('Inserisci una data valida.');form.elements.date.focus();return}
+ const amount=Math.round(unitAmount*quantity*100)/100;
+ if(!Number.isFinite(amount)||amount<=0){setError('Totale del costo non valido.');return}
+ const expense={id:uid(),branch,description,amount,unitAmount:Math.round(unitAmount*100)/100,quantity,category,at:date+'T12:00:00',automatic:false};
+ const next=expenses.concat(expense);
+ const previous=expenses;expenses=next;
+ try{
+  await markSaved();render();showSaveToast('Costo registrato: '+quantity+' × '+euro(unitAmount)+' = '+euro(amount));
+ }catch(ex){expenses=previous;setError('Salvataggio non riuscito: '+ex.message);statusSaved(false,ex.message)}
+}
+async function deleteExpense(id){const entry=expenses.find(x=>String(x.id)===String(id)&&x.branch===branch);if(!entry)return;if(!confirm('Eliminare il costo «'+entry.description+'» dal bilancio?'))return;const prev=expenses;expenses=expenses.filter(x=>String(x.id)!==String(id));try{await markSaved();render();showSaveToast('Costo eliminato')}catch(e){expenses=prev;alert(e.message)}}
+function balanceHistory(d){
+ const movements=[...d.bSales.map(x=>({id:x.id,at:x.at,kind:'sale',description:x.name+' · '+x.qty+' '+(Number(x.qty)===1?'copia':'copie'),amount:Number(x.total||0)})),...d.bExpenses.map(x=>({...x,kind:'expense'}))].sort((a,b)=>String(b.at).localeCompare(String(a.at)));
+ if(!movements.length)return '<p class="muted">Ancora nessun movimento. Aggiungi un costo oppure registra una vendita dal catalogo.</p>';
+ return `<div class="balance-history">${movements.map(x=>`<div class="balance-entry"><div><strong>${escapeHtml(x.description)}</strong><small>${formatDate(x.at)} · ${x.kind==='sale'?'Vendita':escapeHtml(x.category||'Costo')}${x.kind==='expense'?' · Quantità: '+(Number(x.quantity)||1):''}${x.automatic?' · Automatico':''}</small></div><div class="balance-entry-right"><b class="${x.kind==='sale'?'gain-text':'cost-text'}">${x.kind==='sale'?'+':'−'}${euro(x.amount)}</b>${x.kind==='expense'?`<button class="btn mini-delete" title="Elimina costo" onclick="deleteExpense('${escapeHtml(x.id)}')">✕</button>`:''}</div></div>`).join('')}</div>`;
+}
+function balanceChart(d){
+ const grouped=new Map();
+ const put=(at,kind,v)=>{const day=String(at||'').slice(0,10);if(!/^\d{4}-\d{2}-\d{2}$/.test(day))return;const point=grouped.get(day)||{cost:0,gain:0};point[kind]+=v;grouped.set(day,point)};
+ d.bSales.forEach(x=>put(x.at,'gain',Number(x.total||0)));d.bExpenses.forEach(x=>put(x.at,'cost',Number(x.amount||0)));
+ if(grouped.size===0)return '<div class="balance-chart-empty">Il grafico comparirà dopo la prima vendita o il primo costo.</div>';
+ let c=0,g=0;const ordered=[...grouped.entries()].sort((a,b)=>a[0].localeCompare(b[0]));let data=ordered.map(([day,v])=>{c+=v.cost;g+=v.gain;return {day,c,g}});
+ // Se abbiamo un solo giorno, disegniamo anche il punto iniziale.
+ if(data.length===1)data=[{day:'Inizio',c:0,g:0},...data];
+ const W=940,H=340,L=85,R=24,T=23,B=53,plotW=W-L-R,plotH=H-T-B;
+ const max=Math.max(1,...data.map(p=>Math.max(p.c,p.g)))*1.08;
+ const x=i=>L+i*plotW/(data.length-1),y=v=>T+plotH-v/max*plotH;
+ const pts=k=>data.map((p,i)=>`${x(i).toFixed(1)},${y(p[k]).toFixed(1)}`).join(' ');
+ const lines=Array.from({length:5},(_,i)=>{const val=max*i/4,yy=y(val);return `<line x1="${L}" x2="${W-R}" y1="${yy}" y2="${yy}" stroke="#39465d" stroke-dasharray="4 7"/><text x="${L-10}" y="${yy+4}" text-anchor="end" fill="#a9b6cd" font-size="12">${escapeHtml(euro(val))}</text>`}).join('');
+ const labelIdx=[...new Set([0,Math.floor((data.length-1)/2),data.length-1])];
+ const labels=labelIdx.map(i=>`<text x="${x(i)}" y="${H-17}" text-anchor="${i===0?'start':i===data.length-1?'end':'middle'}" fill="#a9b6cd" font-size="12">${escapeHtml(data[i].day==='Inizio'?'Inizio':formatDate(data[i].day+'T12:00:00'))}</text>`).join('');
+ const dots=k=>data.map((p,i)=>`<circle cx="${x(i)}" cy="${y(p[k])}" r="3.6" fill="${k==='c'?'#ff8499':'#65ddae'}"><title>${escapeHtml(p.day)}: ${escapeHtml(euro(p[k]))}</title></circle>`).join('');
+ return `<div class="chart-scroll"><svg class="balance-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="Grafico a linee dei costi cumulativi in rosso e dei guadagni cumulativi in verde">${lines}${labels}<polyline fill="none" stroke="#ff8499" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="${pts('c')}"/><polyline fill="none" stroke="#65ddae" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" points="${pts('g')}"/>${dots('c')}${dots('g')}</svg></div><p class="muted" style="font-size:11px;margin:0">Totali progressivi per data: rosso = costi registrati, verde = incassi dalle vendite.</p>`;
+}
+function exportBalanceCSV(){const d=balanceData(),rows=[['Data','Tipo','Descrizione','Categoria','Importo EUR'],...d.bSales.map(x=>[x.at,'Guadagno',x.name,'Vendita',Number(x.total||0)]),...d.bExpenses.map(x=>[x.at,'Costo',x.description,x.category||'Altro',Number(x.amount||0)])].sort((a,b)=>a[0]==='Data'?-1:b[0]==='Data'?1:String(a[0]).localeCompare(String(b[0])));const enc=v=>'"'+String(v??'').replace(/"/g,'""')+'"';download('\ufeff'+rows.map(row=>row.map(enc).join(';')).join('\r\n'),'Mondocarte_Bilancio_'+branch+'.csv','text/csv;charset=utf-8')}
+
+function openSales(){const subset=sales.filter(x=>x.branch===branch).slice().sort((a,b)=>String(b.at).localeCompare(String(a.at)));const qty=subset.reduce((n,x)=>n+Number(x.qty||0),0),revenue=subset.reduce((n,x)=>n+Number(x.total||0),0);openModal(`<div class="modalhead"><div><span class="eyebrow">${BRANCHES[branch]}</span><h2>Storico vendite</h2></div><button class="btn icon" onclick="closeModal()">✕</button></div><div class="sales-summary"><span class="tag">${subset.length} operazioni</span><span class="tag">${qty} copie vendute</span><span class="tag">Incasso totale: ${euro(revenue)}</span></div>${subset.length?`<div class="sale-list">${subset.map(x=>`<div class="sale-entry"><div><b>${escapeHtml(x.name)}</b><small>${escapeHtml([x.set,x.number].filter(Boolean).join(' · '))} · ${new Date(x.at).toLocaleString('it-IT')}</small><small>${Number(x.qty)} ${Number(x.qty)===1?'copia':'copie'} × ${euro(x.unitPrice)} · ${escapeHtml(x.channel||'Non specificata')}</small></div><strong>${euro(x.total)}</strong></div>`).join('')}</div>`:'<p class="muted">Non hai ancora registrato vendite in questo reparto.</p>'}<div class="modalfooter"><button class="btn" onclick="exportSalesCSV()">Esporta vendite CSV</button><button class="btn primary" onclick="closeModal()">Chiudi</button></div>`)}
+function exportSalesCSV(){const fields=['at','branch','name','set','number','qty','unitPrice','channel','total'];const enc=x=>'"'+String(x??'').replace(/"/g,'""')+'"';const lines=[fields.join(';'),...sales.filter(x=>x.branch===branch).map(x=>fields.map(k=>enc(x[k])).join(';'))];download('\ufeff'+lines.join('\r\n'),'Mondocarte_vendite_'+branch+'.csv','text/csv;charset=utf-8')}
+function openModal(markup){document.getElementById('modal').innerHTML=markup;document.getElementById('overlay').classList.add('open')};function closeModal(){document.getElementById('overlay').classList.remove('open')};document.getElementById('overlay').addEventListener('click',e=>{if(e.target.id==='overlay')closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+function openEditor(id){const c=inventory.find(x=>x.id===id)||{name:'',set:'',number:'',language:'Italiano',condition:'Near Mint',finish:'Normale',qty:1,price:0,cost:0,image:'',cardtrader:'',notes:''},edit=!!id;openModal(`<div class="modalhead"><div><span class="eyebrow">${BRANCHES[branch]}</span><h2>${edit?'Modifica carta':'Aggiungi una carta'}</h2></div><button class="btn icon" onclick="closeModal()">✕</button></div><form id="cardForm" novalidate><div class="fieldgrid"><div class="field"><label>Nome della carta *</label><input name="name" required maxlength="120" value="${escapeHtml(c.name)}" placeholder="Es. Charizard ex"></div><div class="field"><label>Espansione / Set</label><input name="set" maxlength="120" value="${escapeHtml(c.set)}" placeholder="Es. 151"></div><div class="field"><label>Numero / Codice carta</label><input name="number" maxlength="60" value="${escapeHtml(c.number)}" placeholder="Es. 199/165"></div><div class="field"><label>Lingua</label><select name="language">${['Italiano','Inglese','Giapponese','Altro'].map(x=>`<option ${c.language===x?'selected':''}>${x}</option>`).join('')}</select></div><div class="field"><label>Condizione</label><select name="condition">${['Mint','Near Mint','Excellent','Good','Light Played','Played','Poor'].map(x=>`<option ${c.condition===x?'selected':''}>${x}</option>`).join('')}</select></div><div class="field"><label>Finitura / Variante</label><select name="finish">${['Normale','Reverse Holo','Holo','Full Art','Alt Art','Promo','Altro'].map(x=>`<option ${c.finish===x?'selected':''}>${x}</option>`).join('')}</select></div><div class="field"><label>Quantità *</label><input name="qty" type="number" min="0" step="1" required value="${Number(c.qty)||0}"></div><div class="field"><label>Valore unitario in € *</label><input name="price" type="number" min="0" step="0.01" required value="${Number(c.price)||0}"></div><div class="field"><label>Costo d'acquisto unitario in €</label><input name="cost" type="number" min="0" step="0.01" value="${Number(c.cost)||0}"></div><div class="field wide"><label>Carica la foto della carta</label><input id="cardImageFile" type="file" accept="image/png,image/jpeg,image/webp,image/gif"><small>Carica un file JPG, PNG o WEBP dal dispositivo. Se stai modificando una carta e non selezioni una nuova foto, quella esistente rimane salvata.</small></div><div class="field wide"><label>URL scheda CardTrader</label><input name="cardtrader" type="url" value="${escapeHtml(c.cardtrader||'')}" placeholder="https://www.cardtrader.com/it-IT/…"><small>Inserisci il link CardTrader della carta corretta. Per il confronto prezzi restano necessari: carta in italiano e venditore con sede in Italia.</small></div><div class="field wide"><label>Note</label><textarea name="notes" placeholder="Posizione in magazzino, dettagli…">${escapeHtml(c.notes)}</textarea></div></div><div class="modalfooter">${edit?`<button type="button" class="btn danger" onclick="deleteCard('${id}')">Elimina carta</button>`:''}<button type="button" class="btn" onclick="closeModal()">Annulla</button><button type="button" id="cardSaveButton" class="btn primary">${edit?'Salva modifiche':'Aggiungi al catalogo'}</button></div><div id="cardSaveStatus" role="status" aria-live="polite" style="margin-top:12px;color:#ffd88a;font-size:12px"></div></form>`);const form=document.getElementById("cardForm");const btn=document.getElementById("cardSaveButton");btn.addEventListener("click",()=>saveCard(null,id||""));form.addEventListener("submit",ev=>{ev.preventDefault();saveCard(null,id||"")})}
+function structuredCloneSafe(value){return JSON.parse(JSON.stringify(value))}
+function shrinkImage(file){
+ return new Promise((resolve,reject)=>{
+  const reader=new FileReader();
+  reader.onerror=()=>reject(new Error('Impossibile leggere la foto'));
+  reader.onload=()=>{
+   const img=new Image();img.onerror=()=>reject(new Error('Il file non è una foto leggibile'));
+   img.onload=()=>{
+    const maxWidth=360,maxHeight=500,ratio=Math.min(1,maxWidth/img.width,maxHeight/img.height);
+    const canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*ratio));canvas.height=Math.max(1,Math.round(img.height*ratio));
+    canvas.getContext('2d').drawImage(img,0,0,canvas.width,canvas.height);
+    resolve(canvas.toDataURL('image/jpeg',0.68));
+   };img.src=reader.result;
+  };reader.readAsDataURL(file);
+ });
+}
+async function saveCard(e,id){
+  if(e && e.preventDefault)e.preventDefault();
+  const status=document.getElementById('cardSaveStatus');
+  const button=document.getElementById('cardSaveButton');
+  const tell=(message,isError=true)=>{if(status){status.textContent=message;status.style.color=isError?'#ff9fae':'#80e8bb'};if(isError)console.error('Mondocarte:',message)};
+  try{
+    const form=document.getElementById('cardForm');
+    if(!form)throw new Error('Modulo non trovato. Chiudi e riapri la finestra.');
+    // Read the actual controls directly; no reliance on inline form handlers.
+    const field=(key)=>{const el=form.querySelector('[name="'+key+'"]');return el?String(el.value||'').trim():''};
+    const data={name:field('name'),set:field('set'),number:field('number'),language:field('language'),condition:field('condition'),finish:field('finish'),cardtrader:field('cardtrader'),notes:field('notes')};
+    data.image=inventory.find(c=>c.id===id)?.image||'';
+    const upload=document.getElementById('cardImageFile');
+    if(upload && upload.files && upload.files[0]){
+      if(!upload.files[0].type.startsWith('image/'))throw new Error('Carica un file immagine valido.');
+      data.image=await shrinkImage(upload.files[0]);
+    }
+    const numeric=(key)=>Number(field(key).replace(',','.'));
+    data.qty=numeric('qty');data.price=numeric('price');data.cost=field('cost')===''?0:numeric('cost');
+    if(!data.name){tell('Inserisci il nome della carta.');form.querySelector('[name="name"]').focus();return false}
+    if(!Number.isInteger(data.qty)||data.qty<0){tell('Inserisci una quantità intera valida.');return false}
+    if(!Number.isFinite(data.price)||data.price<0||!Number.isFinite(data.cost)||data.cost<0){tell('Inserisci valori corretti per prezzi e costo.');return false}
+    if(button){button.disabled=true;button.textContent='Salvataggio…'}
+    const now=new Date().toISOString();
+    const old=inventory.find(c=>c.id===id);
+    const next=inventory.slice();
+    if(old){
+      const history=Array.isArray(old.history)?old.history.slice():[];
+      if(Number(old.price)!==data.price)history.push({at:now,price:data.price,source:'manuale'});
+      next[next.indexOf(old)]={...old,...data,history,updatedAt:now};
+    }else{
+      next.push({...data,id:uid(),branch:branch||'tomstaff',createdAt:now,updatedAt:now,history:[{at:now,price:data.price,source:'manuale'}]});
+    }
+    // Un aumento delle copie genera un costo d'acquisto, solo se hai indicato il costo unitario.
+    // Le vecchie carte gia' presenti prima di questa versione NON sono conteggiate retroattivamente.
+    const addedQty=old?Math.max(0,data.qty-Number(old.qty||0)):data.qty;
+    const purchase=addedQty>0&&data.cost>0?{id:uid(),branch:old?old.branch:(branch||'tomstaff'),at:now,description:'Acquisto '+data.name+' ('+addedQty+' '+(addedQty===1?'copia':'copie')+')',category:'Carta Pokémon',amount:Math.round(addedQty*data.cost*100)/100,automatic:true,cardId:old?old.id:next[next.length-1].id}:null;
+    const nextExpenses=purchase?expenses.concat(purchase):expenses;
+    const prevInventory=inventory,prevExpenses=expenses;inventory=next;expenses=nextExpenses;
+    try{await markSaved()}catch(err){inventory=prevInventory;expenses=prevExpenses;throw err}
+    closeModal();render();
+    // Visible non-blocking success feedback.
+    showSaveToast(old?'Modifiche salvate correttamente':'Carta aggiunta correttamente al catalogo');
+  }catch(err){
+    tell('Impossibile aggiungere la carta: '+(err&&err.message?err.message:String(err)));
+  }finally{
+    const activeButton=document.getElementById('cardSaveButton');
+    if(activeButton){activeButton.disabled=false;activeButton.textContent=id?'Salva modifiche':'Aggiungi al catalogo'}
+  }
+  return false;
+}
+function showSaveToast(message,isError=false){
+  let box=document.getElementById('mc-toast');
+  if(!box){box=document.createElement('div');box.id='mc-toast';box.setAttribute('role','status');box.style.cssText='position:fixed;bottom:22px;right:22px;z-index:99;max-width:360px;background:#173d35;color:#d7ffe9;border:1px solid #4aaf89;border-radius:12px;padding:15px 20px;box-shadow:0 15px 40px #0008;font-weight:750';document.body.appendChild(box)}
+  box.textContent=(isError?'⚠ ':'✓ ')+message;box.style.background=isError?'#502631':'#173d35';box.style.borderColor=isError?'#d7798a':'#4aaf89';
+  clearTimeout(window.__mondocarteToastTimeout);
+  window.__mondocarteToastTimeout=setTimeout(()=>box.remove(),5000);
+}
+async function deleteCard(id){const c=inventory.find(x=>x.id===id);if(!c)return;if(!confirm(`Eliminare definitivamente «${c.name}» dal reparto ${BRANCHES[c.branch]}?`))return;const prev=inventory;inventory=inventory.filter(x=>x.id!==id);try{await markSaved();closeModal();render();showSaveToast('Carta eliminata')}catch(e){inventory=prev;alert(e.message)}}
+function showDetails(id){let c=inventory.find(x=>x.id===id);if(!c)return;let h=Array.isArray(c.history)?c.history:[],prices=h.map(v=>Number(v.price)),mi=Math.min(...prices,0),ma=Math.max(...prices,1);let bars=h.length?h.slice(-30).map(x=>`<div class="bar" style="height:${Math.max(6,((Number(x.price)-mi)/(ma-mi||1)*90+10))}%"><span>${euro(x.price)}<br>${new Date(x.at).toLocaleString('it-IT')}<br>${escapeHtml(x.source||'')}</span></div>`).join(''):'<p class="muted">Nessuno storico</p>';openModal(`<div class="modalhead"><div><span class="eyebrow">Scheda inventario</span><h2>${escapeHtml(c.name)}</h2></div><button class="btn icon" onclick="closeModal()">✕</button></div><p class="muted">${escapeHtml([c.set,c.number,c.language,c.condition,c.finish].filter(Boolean).join(' · '))}</p><div class="numbers" style="grid-template-columns:repeat(2,minmax(0,1fr))"><div class="metric"><label>Prezzo unitario</label><strong>${euro(c.price)}</strong></div><div class="metric"><label>Quantità in magazzino</label><strong>${c.qty}</strong></div><div class="metric"><label>Valore totale</label><strong>${euro(c.price*c.qty)}</strong></div><div class="metric"><label>Variazione ultima rilevazione</label><strong>${deltaLabel(c)}</strong></div></div><h3>Storico variazioni prezzo (${h.length})</h3><div class="history">${bars}</div><p class="mini">Le variazioni sono calcolate tra gli ultimi due prezzi registrati. Un prezzo invariato non genera un nuovo punto.</p><p class="muted">${escapeHtml(c.notes||'Nessuna nota')}</p>${c.cardtrader?`<p><a href="${escapeHtml(c.cardtrader)}" target="_blank" rel="noopener noreferrer">Apri scheda CardTrader ↗</a></p>`:''}<div class="modalfooter"><button class="btn" onclick="closeModal()">Chiudi</button><button class="btn primary" onclick="openEditor('${id}')">Modifica carta</button></div>`)}
+function download(content,name,type){let blob=new Blob([content],{type});let url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000)}
+// PDF offline: creato nel browser senza servizi esterni. Una nuova esportazione riflette sempre i prezzi piu recenti.
+function exportCatalogPDF(){
+ try{
+  if(!branch)throw Error('Seleziona prima un reparto.');
+  const entries=inventory.filter(c=>c.branch===branch).slice().sort((a,b)=>Number(b.price)-Number(a.price)||a.name.localeCompare(b.name,'it'));
+  const clean=t=>String(t??'').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[\u2018\u2019]/g,"'").replace(/[\u2013\u2014]/g,'-').replace(/[^\x20-\x7e]/g,'?');
+  const price=n=>Number(n||0).toLocaleString('it-IT',{minimumFractionDigits:2,maximumFractionDigits:2})+' EUR';
+  const pdfText=t=>clean(t).replace(/\\/g,'\\\\').replace(/\(/g,'\\(').replace(/\)/g,'\\)');
+  const pages=[];const chunk=39;
+  const items=entries.length?entries:[{name:'Nessuna carta disponibile',qty:'-',price:0,empty:true}];
+  for(let start=0;start<items.length;start+=chunk){
+   const lines=[];
+   const txt=(x,y,size,t,bold=false)=>lines.push('BT /'+(bold?'F2':'F1')+' '+size+' Tf 1 0 0 1 '+x+' '+y+' Tm ('+pdfText(t)+') Tj ET');
+   const rule=(y)=>lines.push('0.76 0.78 0.82 RG 44 '+y+' m 551 '+y+' l S');
+   txt(44,792,20,'MONDOCARTE',true);txt(44,771,11,'Catalogo - '+BRANCHES[branch],true);
+   txt(44,754,9,'Esportato: '+new Date().toLocaleString('it-IT')+'   |   Prezzi attuali in archivio');
+   rule(740);txt(44,723,10,'NOME DELLA CARTA',true);txt(389,723,10,'QUANTITA',true);txt(462,723,9,'PREZZO VENDITA',true);rule(715);
+   let y=692;
+   items.slice(start,start+chunk).forEach(c=>{
+    const label=clean(c.name||'').slice(0,51);
+    txt(44,y,10,label);txt(402,y,10,c.empty?'-':String(c.qty));txt(467,y,10,c.empty?'-':price(c.price));
+    y-=16;
+   });
+   rule(59);
+   txt(44,44,9,'Totale copie: '+entries.reduce((a,c)=>a+Number(c.qty),0)+'  |  Valore magazzino: '+price(entries.reduce((a,c)=>a+Number(c.qty)*Number(c.price),0)));
+   txt(500,44,9,'Pag. '+(pages.length+1));
+   pages.push(lines.join('\n')+'\n');
+  }
+  // PDF 1.4, font standard Helvetica, tabelle multipagina. Solo byte ASCII -> offset esatti.
+  const objects=[null];
+  const add=o=>{objects.push(o);return objects.length-1};
+  const catalog=add('');const pagesRef=add('');
+  const f1=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>');
+  const f2=add('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>');
+  const refs=[];
+  pages.forEach(stream=>{
+   const content=add('<< /Length '+stream.length+' >>\nstream\n'+stream+'endstream');
+   refs.push(add('<< /Type /Page /Parent '+pagesRef+' 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 '+f1+' 0 R /F2 '+f2+' 0 R >> >> /Contents '+content+' 0 R >>'));
+  });
+  objects[catalog]='<< /Type /Catalog /Pages '+pagesRef+' 0 R >>';
+  objects[pagesRef]='<< /Type /Pages /Count '+refs.length+' /Kids ['+refs.map(id=>id+' 0 R').join(' ')+'] >>';
+  let pdf='%PDF-1.4\n';const offsets=[0];
+  for(let i=1;i<objects.length;i++){offsets.push(pdf.length);pdf+=i+' 0 obj\n'+objects[i]+'\nendobj\n'}
+  const xref=pdf.length;
+  pdf+='xref\n0 '+objects.length+'\n0000000000 65535 f \n';
+  for(let i=1;i<objects.length;i++)pdf+=String(offsets[i]).padStart(10,'0')+' 00000 n \n';
+  pdf+='trailer\n<< /Size '+objects.length+' /Root '+catalog+' 0 R >>\nstartxref\n'+xref+'\n%%EOF';
+  download(new Uint8Array(Array.from(pdf,c=>c.charCodeAt(0))),'Mondocarte_Catalogo_'+branch+'_'+new Date().toISOString().slice(0,10)+'.pdf','application/pdf');
+ }catch(e){console.error('Esportazione PDF:',e);alert('Impossibile creare il PDF: '+e.message)}
+}
+function exportJSON(){download(JSON.stringify({app:'Mondocarte',version:1,exportedAt:new Date().toISOString(),inventory,sales,expenses,config},null,2),'Mondocarte_backup_'+new Date().toISOString().slice(0,10)+'.json','application/json')}
+function exportCSV(){let fields=['branch','name','set','number','language','condition','finish','qty','price','cost','image','cardtrader','notes'];const enc=x=>'"'+String(x??'').replace(/"/g,'""')+'"';let lines=[fields.join(';'),...inventory.filter(c=>c.branch===branch).map(c=>fields.map(k=>enc(c[k])).join(';'))];download('\ufeff'+lines.join('\r\n'),'Mondocarte_'+branch+'.csv','text/csv;charset=utf-8')}
+function importJSON(ev){let file=ev.target.files?.[0];ev.target.value='';if(!file)return;file.text().then(async txt=>{let obj=JSON.parse(txt),rows=Array.isArray(obj)?obj:obj.inventory;if(!Array.isArray(rows)||!rows.every(x=>x&&typeof x.name==='string'&&BRANCHES[x.branch]&&Number.isFinite(Number(x.price))&&Number.isFinite(Number(x.qty))))throw Error('Formato non valido');if(!confirm('L’importazione sostituirà tutto l’inventario attuale. Procedere?'))return;const previous=storageSnapshot();inventory=rows.map(x=>({...x,id:String(x.id||uid()),name:String(x.name),qty:Math.max(0,Math.trunc(Number(x.qty))),price:Math.max(0,Number(x.price)),history:Array.isArray(x.history)?x.history:[]}));sales=Array.isArray(obj.sales)?obj.sales.filter(x=>x&&BRANCHES[x.branch]&&Number.isFinite(Number(x.qty))&&Number.isFinite(Number(x.total))):[];expenses=Array.isArray(obj.expenses)?obj.expenses.filter(x=>x&&BRANCHES[x.branch]&&Number.isFinite(Number(x.amount))&&Number(x.amount)>=0):[];if(obj.config&&typeof obj.config==='object'){config=obj.config}try{await markSaved()}catch(e){restoreSnapshot(previous);throw e}render();alert('Inventario importato: '+inventory.length+' referenze.')}).catch(e=>alert('Importazione non riuscita: '+e.message))}
+function openSettings(){openModal(`<div class="modalhead"><div><span class="eyebrow">Mondocarte</span><h2>Impostazioni e prezzi</h2></div><button class="btn icon" onclick="closeModal()">✕</button></div><div class="notice">Per aggiornare i prezzi da CardTrader servono dati autorizzati e un servizio che filtri sia la lingua della carta (italiano) sia il Paese del venditore (Italia). Non inserire chiavi API segrete in questa pagina.</div><form onsubmit="saveSettings(event)"><div class="field"><label>Endpoint HTTPS del tuo servizio prezzi (opzionale)</label><input name="endpoint" type="url" value="${escapeHtml(config.endpoint||'')}" placeholder="https://tuodominio.it/api/prezzi-mondocarte"><small>Il servizio deve accettare una richiesta POST JSON con <code>{ source: "CardTrader", filters: { card_language: "it", seller_country: "IT" }, cards: [...] }</code> e restituire <code>{ appliedFilters: { card_language: "it", seller_country: "IT" }, prices: [{ id, price }] }</code>. Prezzi senza conferma dei due filtri vengono rifiutati. Configura il CORS se ospitato altrove. I prezzi vengono controllati soltanto quando premi «↻ Controlla prezzi». Non sono previsti aggiornamenti automatici programmati.</small></div><div class="settingsbox"><strong>Stato aggiornamenti</strong><p class="mini">Ultima verifica: ${config.lastCheck?new Date(config.lastCheck).toLocaleString('it-IT'):'mai'}<br>Modalità: ${config.endpoint?'endpoint configurato':'prezzi manuali'}. Nessun controllo viene eseguito in automatico: premi «↻ Controlla prezzi» nel catalogo per avviarlo.</p></div><div class="modalfooter"><button type="button" class="btn" onclick="closeModal()">Chiudi</button><button class="btn primary" type="submit">Salva</button></div></form>`)}
+async function saveSettings(e){e.preventDefault();const old={...config};config.endpoint=String(new FormData(e.target).get('endpoint')||'').trim();if(config.endpoint&&!/^https:\/\//.test(config.endpoint)){config=old;alert('Inserisci un URL HTTPS.');return}try{await saveConfig();closeModal();render()}catch(err){config=old;alert(err.message)}}
+let updating=false;
+async function refreshPrices(silent=false){
+ if(updating)return;
+ if(!config.endpoint){
+  if(!silent){showSaveToast('Servizio prezzi non collegato: apri le Impostazioni.',true);openSettings()}
+  return;
+ }
+ const cards=inventory.filter(c=>c.language==='Italiano');
+ if(!cards.length){if(!silent)alert('Non ci sono carte in lingua italiana da controllare.');return}
+ updating=true;
+ try{
+  const response=await fetch(config.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({source:'CardTrader',filters:{card_language:'it',seller_country:'IT'},cards:cards.map(c=>({id:c.id,name:c.name,set:c.set,number:c.number,language:c.language,condition:c.condition,finish:c.finish,cardtrader:c.cardtrader||''}))})});
+  if(!response.ok)throw Error('Il servizio prezzi ha risposto con HTTP '+response.status);
+  const payload=await response.json();
+  if(!Array.isArray(payload.prices))throw Error('Risposta senza elenco prezzi');
+  if(payload.appliedFilters?.card_language!=='it'||payload.appliedFilters?.seller_country!=='IT')throw Error('Il servizio non conferma lingua italiana e venditori in Italia. Nessun prezzo modificato.');
+  const previous=storageSnapshot(),now=new Date().toISOString();let count=0;
+  for(const p of payload.prices){
+   const c=inventory.find(x=>x.id===p.id&&x.language==='Italiano');
+   const amount=Number(p.price);
+   if(!c||p.price===null||p.price===undefined||!Number.isFinite(amount)||amount<0)continue;
+   if(amount!==Number(c.price)){
+    c.history=Array.isArray(c.history)?c.history:[];
+    c.history.push({at:now,price:amount,source:'CardTrader · lingua IT · venditore IT'});
+    c.price=amount;c.updatedAt=now;count++;
+   }
+  }
+  config.lastCheck=now;
+  try{await markSaved()}catch(e){restoreSnapshot(previous);throw e}
+  render();
+  if(!silent)alert('Controllo completato. Prezzi aggiornati: '+count+'.');
+ }catch(e){
+  const isNetwork=e instanceof TypeError;
+  if(!silent)alert(isNetwork?'Servizio prezzi non raggiungibile: verifica indirizzo HTTPS, disponibilità e autorizzazione CORS. Un unico file HTML non può contattare direttamente l’API privata CardTrader.':'Controllo prezzi non completato: '+e.message);
+  console.error('Mondocarte controllo prezzi',e);
+ }finally{updating=false}
+}
+async function boot(){
+ // Versione autonoma HTML: niente server locale /api/state.
+ // Salva nel browser (localStorage e IndexedDB) e permette backup JSON.
+ serverMode=false;
+ render();
+ await initMirror();
+}
+window.addEventListener('unhandledrejection',ev=>{console.error('Mondocarte:',ev.reason);statusSaved(false,ev.reason?.message||'Errore imprevisto')});
+boot();
+</script></body></html>
